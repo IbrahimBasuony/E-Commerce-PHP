@@ -23,6 +23,7 @@
             </thead>
             <?php 
             if(isset($_SESSION['cart'])){
+                $sum=0;
                     foreach((isset($_SESSION['cart'])) ? $_SESSION['cart'] :null  as $cart){
 
              ?>
@@ -35,6 +36,7 @@
                     <td><?php echo $cart['quantity'] ?></td>
                     <td><?php echo $cart['price'] ?></td>
                     <td><?php echo $cart['price']* $cart['quantity'] ?></td>
+                    <?php $sum += $cart['price']* $cart['quantity'] ?>
                     
                    
                     <td>
@@ -55,14 +57,14 @@
             <!-- confirm order  -->
             
             <td>
-           <br> Total= <?php 
+           <br> Total= <?php echo $sum ;
 
-if(isset($_SESSION['cart'])){
-    $keycol=array_column($_SESSION['cart'],'subTotal');
-    // print_r($keycol) ;
-    $total= array_sum($keycol);
-    echo $total ;
-} 
+// if(isset($_SESSION['cart'])){
+//     $keycol=array_column($_SESSION['cart'],'subTotal');
+//     // print_r($keycol) ;
+//     $total= array_sum($keycol);
+//     echo $total ;
+// } 
  ?><br><br><br>
             <button type="submit" name="" class="btn btn-success">Confirm</button></td>
             
